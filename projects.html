@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeler - MG Studios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #12121e;
+            color: #e0e0e0;
+        }
+        .bg-gradient-purple {
+            background-image: linear-gradient(to right, #8b5cf6, #d946ef);
+        }
+        .project-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Projeler Bölümü -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-white mb-12">Projelerimiz</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Proje Kartı 1 -->
+            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden">
+                <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=MG-Wordkart+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="MG-Wordkart Web Sitesi Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">MG-Wordkart</h3>
+                    <p class="text-gray-400">Bir kelime tahmin oyunudur. Bu projede HTML, CSS ve JavaScript kullanılmıştır.</p>
+                </div>
+            </a>
+            
+            <!-- Proje Kartı 2 (Örnek) -->
+            <a href="#" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden">
+                <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=Proje+2+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="Örnek Proje 2 Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">İkinci Proje Adı</h3>
+                    <p class="text-gray-400">Bu alan, ikinci projenizin açıklamasını içerir. Kullandığınız teknolojileri ve projenin amacını burada belirtebilirsiniz.</p>
+                </div>
+            </a>
+
+            <!-- Proje Kartı 3 (Örnek) -->
+            <a href="#" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden">
+                <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=Proje+3+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="Örnek Proje 3 Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
+                <div class="p-6">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Üçüncü Proje Adı</h3>
+                    <p class="text-gray-400">Bu alan, üçüncü projenizin açıklamasını içerir. Diğer projeleriniz için bu yapıyı kullanabilirsiniz.</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Geri Dön Tuşu -->
+        <div class="text-center mt-12">
+            <button onclick="history.back()" class="px-8 py-4 text-lg font-semibold text-white bg-gradient-purple rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50">
+                Geri Dön
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
