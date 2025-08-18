@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- Görüntüleme alanı ayarları, mobil cihazlar için önemlidir -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS'i dahil ediyoruz, bu sayede modern tasarımlar kolayca yapılabilir -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts'tan Inter fontunu dahil ediyoruz -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>MG Studios</title>
+    <!-- Sitenin genel görünümü için özel CSS stilleri -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Video kartları için üzerine gelince büyüme efekti */
+        .video-card:hover {
+            transform: scale(1.03);
+        }
+        /* Gizli sayfalar için stil */
+        .hidden-section {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <!-- Üst Menü (Header) -->
+    <header class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-700">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Site Başlığı ve Logosu, ana sayfaya geri döner -->
+            <a href="#anasayfa" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                MG Studios
+            </a>
+            <!-- Menü Linkleri -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#videolar" class="text-gray-300 hover:text-white transition-colors duration-300">Videolar</a>
+                <a href="#hakkimizda" class="text-gray-300 hover:text-white transition-colors duration-300">Hakkımızda</a>
+                <a href="#iletisim" class="text-gray-300 hover:text-white transition-colors duration-300">İletişim</a>
+            </div>
+            <!-- Mobil Menü için Buton -->
+            <div class="md:hidden">
+                <button class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Ana İçerik Alanı -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Tüm ana sayfayı kapsayan bölüm -->
+        <div id="home-page">
+            <!-- Tanıtım (Hero) Bölümü -->
+            <section id="anasayfa" class="text-center my-16">
+                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+                    MG Studios'a Hoş Geldiniz
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+                    Blender 3D ile tasarlanan, yaratıcılık ve hikaye anlatımının buluştuğu kısa animasyon videoları.
+                </p>
+                <a href="#videolar" class="mt-8 inline-block px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+                    Videoları Keşfet
+                </a>
+            </section>
+
+            <!-- Hakkımızda Bölümü -->
+            <section id="hakkimizda" class="my-16 text-center">
+                <h2 class="text-4xl font-bold mb-4">Hakkımızda</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                    MG Studios, Blender 3D ile kısa animasyon filmleri üreten bağımsız bir stüdyodur. Amacımız görsel hikaye anlatıcılığıyla hayal gücünü ekrana taşımak ve izleyicilere sinematik deneyimler sunmaktır.
+                </p>
+            </section>
+
+            <!-- Video Galeri Bölümü -->
+            <section id="videolar" class="my-16">
+                <h2 class="text-4xl font-bold text-center mb-12">Son Videolarımız</h2>
+                
+                <!-- Video Kartları için Izgara (Grid) Düzeni -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Video Kartı 1 -->
+                    <a href="#video-player?id=iii3dWT9se0" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
+                        <img src="https://img.youtube.com/vi/iii3dWT9se0/maxresdefault.jpg" alt="Antik Kalıntı videosu için küçük resim" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2">Cennet - The heavens</h3>
+                            <p class="text-gray-400">Gizemli bir medeniyetin kayıp eserlerini arayan bir kaşif.</p>
+                        </div>
+                    </a>
+
+                    <!-- Video Kartı 2 -->
+                    <a href="#video-player?id=oE3tLGpcWo8" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
+                        <img src="https://img.youtube.com/vi/oE3tLGpcWo8/maxresdefault.jpg" alt="Dost Rüzgar videosu için küçük resim" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2">Mountain</h3>
+                            <p class="text-gray-400">Sonsuz dağlar ve bulutlar arasında bir yolculuk.</p>
+                        </div>
+                    </a>
+
+                    <!-- Video Kartı 3 -->
+                    <a href="#video-player?id=v9T3LEkzZVA" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
+                        <img src="https://img.youtube.com/vi/v9T3LEkzZVA/maxresdefault.jpg" alt="Büyülü Orman videosu için küçük resim" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2">Forest</h3>
+                            <p class="text-gray-400">Gizemli bir orman videosu.</p>
+                        </div>
+                    </a>
+
+                    <!-- Video Kartı 4 -->
+                    <a href="#video-player?id=qZGwDMQUkgo" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
+                        <img src="https://img.youtube.com/vi/qZGwDMQUkgo/maxresdefault.jpg" alt="Siberpunk videosu için küçük resim" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2">Cyberpunk City</h3>
+                            <p class="text-gray-400">Gelecekten bir siberpunk şehri.</p>
+                        </div>
+                    </a>
+
+                    <!-- Video Kartı 5 -->
+                    <a href="#video-player?id=mWfHBHLax4M" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
+                        <img src="https://img.youtube.com/vi/mWfHBHLax4M/maxresdefault.jpg" alt="Kış videosu için küçük resim" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2">Winter</h3>
+                            <p class="text-gray-400">Karla kaplı bir dünyada bir kış hikayesi.</p>
+                        </div>
+                    </a>
+                    
+                    <!-- Yeni eklenen video kartı -->
+                    <a href="#video-player?id=Cl_p6yPvm3c" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
+                        <img src="https://img.youtube.com/vi/Cl_p6yPvm3c/maxresdefault.jpg" alt="Soyut Sanat videosu için küçük resim" class="w-full h-auto object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold mb-2">Abstract</h3>
+                            <p class="text-gray-400">Blender 3D ile oluşturulmuş soyut bir sanat çalışması.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+        </div>
+
+        <!-- Video Oynatıcı Sayfası (Başlangıçta gizli) -->
+        <div id="video-player" class="hidden-section">
+            <a href="#anasayfa" class="text-gray-300 hover:text-white transition-colors duration-300 mb-6 inline-block">
+                &larr; Geri dön
+            </a>
+            <h1 id="video-title" class="text-4xl md:text-5xl font-extrabold mb-8 leading-tight text-center">Video</h1>
+            <div id="video-container" class="w-full max-w-4xl aspect-video rounded-xl overflow-hidden bg-gray-800 shadow-2xl mx-auto">
+                <p class="text-gray-400 text-center p-8">Video yükleniyor...</p>
+            </div>
+        </div>
+        
+    </main>
+
+    <!-- Alt Kısım (Footer) -->
+    <footer class="bg-gray-800 py-8 mt-12">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <p>&copy; 2024 MG Studios. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sayfa bölümlerini yöneten JavaScript
+        const homePage = document.getElementById('home-page');
+        const videoPlayerPage = document.getElementById('video-player');
+        const videoContainer = document.getElementById('video-container');
+        const videoTitle = document.getElementById('video-title');
+
+        // URL'deki hash'e göre doğru bölümü gösterir
+        function showSectionFromHash() {
+            const hash = window.location.hash.substring(1);
+            if (hash.startsWith('video-player')) {
+                // Video oynatıcı sayfasını göster
+                homePage.classList.add('hidden-section');
+                videoPlayerPage.classList.remove('hidden-section');
+                
+                // Video ID'sini URL'den al
+                const urlParams = new URLSearchParams(hash.split('?')[1]);
+                const videoId = urlParams.get('id');
+                
+                if (videoId) {
+                    // YouTube iframe'ini oluştur ve oynat
+                    videoContainer.innerHTML = `
+                        <iframe 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen 
+                            class="w-full h-full"
+                        ></iframe>
+                    `;
+                } else {
+                    videoContainer.innerHTML = '<p class="text-gray-400 text-center p-8">Video bulunamadı. Lütfen ana sayfadan bir video seçin.</p>';
+                }
+
+            } else {
+                // Ana sayfayı göster
+                homePage.classList.remove('hidden-section');
+                videoPlayerPage.classList.add('hidden-section');
+            }
+        }
+        
+        // Sayfa yüklendiğinde ve hash değiştiğinde çalıştır
+        window.addEventListener('hashchange', showSectionFromHash);
+        window.addEventListener('load', showSectionFromHash);
+
+        // Örnek başlık ve açıklamaları tanımla
+        const videoData = {
+            'iii3dWT9se0': { title: 'Cennet - The heavens', desc: 'Gizemli bir medeniyetin kayıp eserlerini arayan bir kaşif.' },
+            'oE3tLGpcWo8': { title: 'Mountain', desc: 'Sonsuz dağlar ve bulutlar arasında bir yolculuk.' },
+            'v9T3LEkzZVA': { title: 'Forest', desc: 'Gizemli bir orman videosu.' },
+            'qZGwDMQUkgo': { title: 'Cyberpunk City', desc: 'Gelecekten bir siberpunk şehri.' },
+            'mWfHBHLax4M': { title: 'Winter', desc: 'Karla kaplı bir dünyada bir kış hikayesi.' },
+            'Cl_p6yPvm3c': { title: 'Abstract', desc: 'Blender 3D ile oluşturulmuş soyut bir sanat çalışması.' }
+        };
+        
+        // Video kartlarının tıklama olaylarını dinle
+        document.querySelectorAll('a[href^="#video-player"]').forEach(link => {
+            link.addEventListener('click', (event) => {
+                // Başlık bilgisini almak için videoId'yi kullan
+                const videoId = new URLSearchParams(link.href.split('?')[1]).get('id');
+                if (videoData[videoId]) {
+                    videoTitle.textContent = videoData[videoId].title;
+                } else {
+                    videoTitle.textContent = 'Video';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
