@@ -85,8 +85,8 @@
                     <a href="#video-player?id=iii3dWT9se0" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
                         <img src="https://img.youtube.com/vi/iii3dWT9se0/maxresdefault.jpg" alt="Antik Kalıntı videosu için küçük resim" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-2">Cennet - The heavens</h3>
-                            <p class="text-gray-400">Gizemli bir medeniyetin kayıp eserlerini arayan bir kaşif.</p>
+                            <h3 class="text-2xl font-semibold mb-2">patrick_bateman_lego_#5</h3>
+                            <p class="text-gray-400">Patrick Bateman.</p>
                         </div>
                     </a>
 
@@ -94,8 +94,8 @@
                     <a href="#video-player?id=oE3tLGpcWo8" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
                         <img src="https://img.youtube.com/vi/oE3tLGpcWo8/maxresdefault.jpg" alt="Dost Rüzgar videosu için küçük resim" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-2">Mountain</h3>
-                            <p class="text-gray-400">Sonsuz dağlar ve bulutlar arasında bir yolculuk.</p>
+                            <h3 class="text-2xl font-semibold mb-2">ATATURK</h3>
+                            <p class="text-gray-400">10 Kasım</p>
                         </div>
                     </a>
 
@@ -103,8 +103,8 @@
                     <a href="#video-player?id=v9T3LEkzZVA" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
                         <img src="https://img.youtube.com/vi/v9T3LEkzZVA/maxresdefault.jpg" alt="Büyülü Orman videosu için küçük resim" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-2">Forest</h3>
-                            <p class="text-gray-400">Gizemli bir orman videosu.</p>
+                            <h3 class="text-2xl font-semibold mb-2">patrick_bateman_lego_#6</h3>
+                            <p class="text-gray-400">Patrick Bateman.</p>
                         </div>
                     </a>
 
@@ -112,8 +112,8 @@
                     <a href="#video-player?id=qZGwDMQUkgo" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
                         <img src="https://img.youtube.com/vi/qZGwDMQUkgo/maxresdefault.jpg" alt="Siberpunk videosu için küçük resim" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-2">Cyberpunk City</h3>
-                            <p class="text-gray-400">Gelecekten bir siberpunk şehri.</p>
+                            <h3 class="text-2xl font-semibold mb-2">spiderman_lego_#1</h3>
+                            <p class="text-gray-400">Spiderman</p>
                         </div>
                     </a>
 
@@ -121,8 +121,8 @@
                     <a href="#video-player?id=mWfHBHLax4M" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
                         <img src="https://img.youtube.com/vi/mWfHBHLax4M/maxresdefault.jpg" alt="Kış videosu için küçük resim" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-2">Winter</h3>
-                            <p class="text-gray-400">Karla kaplı bir dünyada bir kış hikayesi.</p>
+                            <h3 class="text-2xl font-semibold mb-2">knight_rider_0.3.6.5_0001-1750</h3>
+                            <p class="text-gray-400">Knight Rider</p>
                         </div>
                     </a>
                     
@@ -130,8 +130,8 @@
                     <a href="#video-player?id=Cl_p6yPvm3c" class="block video-card rounded-xl overflow-hidden bg-gray-800 shadow-xl transition-transform duration-300">
                         <img src="https://img.youtube.com/vi/Cl_p6yPvm3c/maxresdefault.jpg" alt="Soyut Sanat videosu için küçük resim" class="w-full h-auto object-cover">
                         <div class="p-6">
-                            <h3 class="text-2xl font-semibold mb-2">Abstract</h3>
-                            <p class="text-gray-400">Blender 3D ile oluşturulmuş soyut bir sanat çalışması.</p>
+                            <h3 class="text-2xl font-semibold mb-2">saul_goodman_lego_#1</h3>
+                            <p class="text-gray-400">Saul Goodman</p>
                         </div>
                     </a>
 
@@ -141,7 +141,7 @@
 
         <!-- Video Oynatıcı Sayfası (Başlangıçta gizli) -->
         <div id="video-player" class="hidden-section">
-            <a href="#anasayfa" class="text-gray-300 hover:text-white transition-colors duration-300 mb-6 inline-block">
+            <a href="#anasayfa" class="text-gray-300 hover:text-white transition-colors duration-300 mb-6 inline-block" onclick="stopVideo()">
                 &larr; Geri dön
             </a>
             <h1 id="video-title" class="text-4xl md:text-5xl font-extrabold mb-8 leading-tight text-center">Video</h1>
@@ -194,15 +194,22 @@
                 }
 
             } else {
-                // Ana sayfayı göster
+                // Ana sayfayı göster ve video oynatıcı içeriğini temizle
                 homePage.classList.remove('hidden-section');
                 videoPlayerPage.classList.add('hidden-section');
+                videoContainer.innerHTML = '<p class="text-gray-400 text-center p-8">Video yükleniyor...</p>';
             }
         }
         
         // Sayfa yüklendiğinde ve hash değiştiğinde çalıştır
         window.addEventListener('hashchange', showSectionFromHash);
         window.addEventListener('load', showSectionFromHash);
+
+        // Videoyu durduran yeni fonksiyon
+        function stopVideo() {
+            // Video kapsayıcısının içeriğini boşaltarak videoyu durdurur
+            videoContainer.innerHTML = '<p class="text-gray-400 text-center p-8">Video yükleniyor...</p>';
+        }
 
         // Örnek başlık ve açıklamaları tanımla
         const videoData = {
