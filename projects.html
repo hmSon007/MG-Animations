@@ -22,9 +22,28 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
+        /* Metin gradyanı için özel stil */
+        .text-gradient {
+            background: linear-gradient(315deg, rgba(99, 102, 241, 1) 0%, rgba(34, 211, 238, 1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        /* Görsel alanının boyutları ve arka planı */
+        .img-placeholder {
+            width: 100%;
+            height: 180px; /* Görselin yüksekliğini temsil eden sabit bir değer */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2e2e40;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
         /* Sadece ilk kart için hover efekti */
         #mg-wordkart-card:hover {
-            border: 2px solid #00bcd4; /* Gökyüzü mavisi */
+            border-color: #22D3EE; /* Gradyandaki mavi tonu */
         }
     </style>
 </head>
@@ -36,18 +55,19 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Proje Kartı 1 -->
-            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden" id="mg-wordkart-card">
-                <!-- İlk proje görseli eski rengine döndürüldü -->
-                <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=MG-Wordkart+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="MG-Wordkart Web Sitesi Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
+            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent overflow-hidden" id="mg-wordkart-card">
+                <!-- Metin gradyanı için özel div -->
+                <div class="img-placeholder">
+                    <h3 class="text-2xl md:text-3xl font-bold text-gradient">MG-Wordkart</h3>
+                </div>
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold mb-2 text-white">MG-Wordkart</h3>
-                    <p class="text-gray-400">Bu uygulama, İngilizce kelime bilginizi flaş kartlar aracılığıyla geliştirmek için tasarlanmıştır.</p>
+                    <p class="text-gray-400">Bir kelime tahmin oyunudur. Bu projede HTML, CSS ve JavaScript kullanılmıştır.</p>
                 </div>
             </a>
             
             <!-- Proje Kartı 2 (Örnek) -->
             <a href="#" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden">
-                <!-- İkinci proje görseli eski rengine döndürüldü -->
                 <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=Proje+2+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="Örnek Proje 2 Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold mb-2 text-white">İkinci Proje Adı</h3>
@@ -57,7 +77,6 @@
 
             <!-- Proje Kartı 3 (Örnek) -->
             <a href="#" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden">
-                <!-- Üçüncü proje görseli eski rengine döndürüldü -->
                 <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=Proje+3+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="Örnek Proje 3 Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold mb-2 text-white">Üçüncü Proje Adı</h3>
