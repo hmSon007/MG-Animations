@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımızda - MG Studios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #12121e;
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .bg-gradient-purple {
+            background-image: linear-gradient(to right, #8b5cf6, #d946ef);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="container text-center">
+        <!-- Hakkımızda Bölümü -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8">Hakkımızda</h1>
+        <p class="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto text-gray-300">
+            MG Studios, Blender 3D ile kısa animasyon filmleri üreten bağımsız bir stüdyodur. Amacımız görsel hikaye anlatıcılığıyla hayal gücünü ekrana taşımak ve izleyicilere sinematik deneyimler sunmaktır.
+        </p>
+        
+        <!-- Boşluk -->
+        <div class="my-10"></div>
+
+        <!-- Geri Dön Tuşu -->
+        <button onclick="history.back()" class="px-8 py-4 text-lg font-semibold text-white bg-gradient-purple rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50">
+            Geri Dön
+        </button>
+    </div>
+
+</body>
+</html>
