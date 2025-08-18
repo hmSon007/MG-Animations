@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - MG Studios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #12121e;
+            color: #e0e0e0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .bg-gradient-purple {
+            background-image: linear-gradient(to right, #8b5cf6, #d946ef);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="container text-center">
+        <!-- İletişim Bölümü -->
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8">İletişim</h1>
+        <p class="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto text-gray-300">
+            Sorularınız, iş teklifleriniz veya geri bildirimleriniz için bize ulaşın.
+        </p>
+        <div class="bg-[#1e1e2d] p-8 rounded-2xl shadow-lg w-full mb-10 mt-8">
+            <!-- Formspree adresini formun action kısmına ekledik. -->
+            <form action="https://formspree.io/f/xnqgajlw" method="POST" class="space-y-4">
+                <input type="text" placeholder="Adınız" class="w-full px-4 py-3 rounded-xl bg-[#2e2e40] text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300">
+                <input type="email" placeholder="E-posta Adresiniz" class="w-full px-4 py-3 rounded-xl bg-[#2e2e40] text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300">
+                <textarea placeholder="Mesajınız" rows="5" class="w-full px-4 py-3 rounded-xl bg-[#2e2e40] text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300"></textarea>
+                <button type="submit" class="w-full px-4 py-3 text-lg font-semibold text-white bg-gradient-purple rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+                    Gönder
+                </button>
+            </form>
+            <div class="mt-6 flex justify-center space-x-6">
+                <!-- Sosyal Medya İkonları -->
+                <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <!-- Instagram Icon (example) -->
+                        <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.232 5.51a1.2 1.2 0 011.697 1.697l-1.697 1.697a1.2 1.2 0 11-1.697-1.697l1.697-1.697zM12 10a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <!-- Twitter/X Icon (example) -->
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.995 4.995 0 002.163-2.723 10 10 0 01-3.141 1.207 4.995 4.995 0 00-8.485 4.394c-4.14 0-7.82-2.197-10.29-5.188a4.995 4.995 0 001.5 6.697 4.995 4.995 0 01-2.257-.625v.063a4.995 4.995 0 004.01 4.908 4.995 4.995 0 01-2.24.085 4.995 4.995 0 004.665 3.442 9.995 9.995 0 01-6.232 2.126 9.995 9.995 0 01-1.2-.072 10 10 0 0013.682-11.758c.115-.152.227-.306.335-.461z" />
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-300 hover:text-white transition-colors duration-300">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <!-- LinkedIn Icon (example) -->
+                        <path d="M20.25 0H3.75C1.679 0 0 1.679 0 3.75v16.5C0 22.321 1.679 24 3.75 24h16.5C22.321 24 24 22.321 24 20.25V3.75C24 1.679 22.321 0 20.25 0zM7.5 20.25H3.75V9.75h3.75v10.5zM5.625 8.25c-1.036 0-1.875-.84-1.875-1.875s.84-1.875 1.875-1.875 1.875.84 1.875 1.875-.84 1.875-1.875 1.875zM20.25 20.25H16.5v-6c0-.825-.675-1.5-1.5-1.5s-1.5.675-1.5 1.5v6H9.75V9.75h3.75v2.25c.57-.996 1.705-2.25 3.75-2.25 2.76 0 5.25 2.49 5.25 6.75v3.75z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Geri Dön Tuşu -->
+        <button onclick="history.back()" class="px-8 py-4 text-lg font-semibold text-white bg-gradient-purple rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50">
+            Geri Dön
+        </button>
+    </div>
+
+</body>
+</html>
