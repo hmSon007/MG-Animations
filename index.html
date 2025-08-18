@@ -14,40 +14,62 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d; /* Daha koyu bir arka plan */
         }
-        /* Video kartları için üzerine gelince büyüme efekti */
+        /* Video kartları için üzerine gelince büyüme efekti ve gölge */
+        .video-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
         .video-card:hover {
             transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
         }
         /* Gizli sayfalar için stil */
         .hidden-section {
             display: none;
         }
+        /* Mobil menü animasyonu */
+        .mobile-menu {
+            transition: max-height 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .mobile-menu.active {
+            max-height: 200px; /* Menü içeriğine göre ayarlanabilir */
+        }
     </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gray-950 text-white">
 
     <!-- Üst Menü (Header) -->
-    <header class="sticky top-0 z-50 bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-700">
+    <header class="sticky top-0 z-50 bg-gray-950 bg-opacity-90 backdrop-filter backdrop-blur-lg border-b border-gray-700">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Site Başlığı ve Logosu, ana sayfaya geri döner -->
             <a href="#anasayfa" class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                 MG Studios
             </a>
             <!-- Menü Linkleri -->
-            <div class="hidden md:flex space-x-6">
+            <div id="desktop-menu" class="hidden md:flex space-x-6">
                 <a href="#videolar" class="text-gray-300 hover:text-white transition-colors duration-300">Videolar</a>
                 <a href="about.html" class="text-gray-300 hover:text-white transition-colors duration-300">Hakkımızda</a>
                 <a href="iletisim.html" class="text-gray-300 hover:text-white transition-colors duration-300">İletişim</a>
-				<a href="projects.html" class="text-gray-300 hover:text-white transition-colors duration-300">Projeler</a>
+                <a href="projects.html" class="text-gray-300 hover:text-white transition-colors duration-300">Projeler</a>
             </div>
             <!-- Mobil Menü için Buton -->
             <div class="md:hidden">
-                <button class="text-gray-300 hover:text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
+        <!-- Mobil Menü Açılır Alanı -->
+        <div id="mobile-menu" class="md:hidden mobile-menu">
+            <a href="#videolar" class="block px-6 py-3 text-gray-300 hover:bg-gray-800 transition-colors duration-300 border-t border-gray-700">Videolar</a>
+            <a href="about.html" class="block px-6 py-3 text-gray-300 hover:bg-gray-800 transition-colors duration-300 border-t border-gray-700">Hakkımızda</a>
+            <a href="iletisim.html" class="block px-6 py-3 text-gray-300 hover:bg-gray-800 transition-colors duration-300 border-t border-gray-700">İletişim</a>
+            <a href="projects.html" class="block px-6 py-3 text-gray-300 hover:bg-gray-800 transition-colors duration-300 border-t border-gray-700">Projeler</a>
+        </div>
     </header>
 
     <!-- Ana İçerik Alanı -->
@@ -141,23 +163,121 @@
             <div id="video-container" class="w-full max-w-4xl aspect-video rounded-xl overflow-hidden bg-gray-800 shadow-2xl mx-auto">
                 <p class="text-gray-400 text-center p-8">Video yükleniyor...</p>
             </div>
+            <div id="video-description" class="max-w-4xl mx-auto mt-8 text-gray-400 text-lg leading-relaxed">
+                <!-- Video açıklaması buraya gelecek -->
+            </div>
+
+            <!-- Yorumlar Bölümü -->
+            <div class="max-w-4xl mx-auto mt-12">
+                <h3 class="text-3xl font-semibold mb-6">Yorumlar</h3>
+                
+                <!-- Yorum Ekleme Formu -->
+                <form id="comment-form" class="bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
+                    <div class="mb-4">
+                        <label for="comment-name" class="block text-gray-400 mb-2">İsim</label>
+                        <input type="text" id="comment-name" name="name" required class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-500 border-none focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    </div>
+                    <div class="mb-4">
+                        <label for="comment-text" class="block text-gray-400 mb-2">Yorumunuz</label>
+                        <textarea id="comment-text" name="comment" required class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-500 border-none focus:ring-2 focus:ring-purple-500 focus:outline-none" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        Yorumu Gönder
+                    </button>
+                </form>
+
+                <!-- Yorumların Gösterileceği Alan -->
+                <div id="comments-list" class="space-y-6">
+                    <!-- Yorumlar buraya dinamik olarak eklenecek -->
+                </div>
+            </div>
         </div>
         
     </main>
 
     <!-- Alt Kısım (Footer) -->
-    <footer class="bg-gray-800 py-8 mt-12">
+    <footer class="bg-gray-900 py-8 mt-12">
         <div class="container mx-auto px-6 text-center text-gray-400">
             <p>&copy; 2024 MG Studios. Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
-    <script>
+    <!-- Firebase SDK'lerini dahil et -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, addDoc, onSnapshot, collection, query, where, serverTimestamp, updateDoc, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Firebase değişkenleri
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db;
+        let auth;
+        let userId;
+        let authReady = false;
+        
+        // Firebase ve kimlik doğrulama işlemini başlat
+        async function initializeFirebase() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        authReady = true;
+                        console.log("Kullanıcı kimliği doğrulandı:", userId);
+                        // Kimlik doğrulama tamamlandığında yorumları yükle
+                        const urlParams = new URLSearchParams(window.location.hash.split('?')[1]);
+                        const videoId = urlParams.get('id');
+                        if (videoId) {
+                             loadComments(videoId);
+                        }
+                    } else {
+                        userId = null;
+                        authReady = false;
+                        console.log("Anonim olarak giriş yapılıyor...");
+                        if (initialAuthToken) {
+                            await signInWithCustomToken(auth, initialAuthToken);
+                        } else {
+                            await signInAnonymously(auth);
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("Firebase başlatılırken hata oluştu:", e);
+            }
+        }
+        initializeFirebase();
+
         // Sayfa bölümlerini yöneten JavaScript
         const homePage = document.getElementById('home-page');
         const videoPlayerPage = document.getElementById('video-player');
         const videoContainer = document.getElementById('video-container');
         const videoTitle = document.getElementById('video-title');
+        const videoDescription = document.getElementById('video-description');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const commentForm = document.getElementById('comment-form');
+        const commentsList = document.getElementById('comments-list');
+
+        // Mobil menü butonunun tıklanma olayını dinle
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Örnek başlık ve açıklamaları tanımla
+        const videoData = {
+            'iii3dWT9se0': { title: 'Patrick Bateman Lego #5', desc: 'Patrick Bateman serisinin en son videosu. Hayranlar için yapıldı.' },
+            'oE3tLGpcWo8': { title: 'ATATURK', desc: '10 Kasım için hazırlanan özel bir animasyon. Atatürk\'ü saygıyla anıyoruz.' },
+            'v9T3LEkzZVA': { title: 'Patrick Bateman Lego #6', desc: 'Patrick Bateman serisinin yeni bölümü. Gizem ve gerilim dolu anlar.' },
+            'qZGwDMQUkgo': { title: 'Spiderman Lego #1', desc: 'Örümcek adamın maceralarını anlatan ilk bölüm. Aksiyon dolu sahneler.' },
+            'mWfHBHLax4M': { title: 'Knight Rider 0.3.6.5', desc: 'Knight Rider hayranları için nostaljik bir animasyon. Kitt\'in maceralarına tanık olun.' },
+            'Cl_p6yPvm3c': { title: 'Saul Goodman Lego #1', desc: 'Saul Goodman\'ın komik maceraları. Hukuk dünyasının renkli karakteri.' }
+        };
 
         // URL'deki hash'e göre doğru bölümü gösterir
         function showSectionFromHash() {
@@ -171,7 +291,11 @@
                 const urlParams = new URLSearchParams(hash.split('?')[1]);
                 const videoId = urlParams.get('id');
                 
-                if (videoId) {
+                if (videoId && videoData[videoId]) {
+                    // Video başlık ve açıklamasını güncelle
+                    videoTitle.textContent = videoData[videoId].title;
+                    videoDescription.textContent = videoData[videoId].desc;
+
                     // YouTube iframe'ini oluştur ve oynat
                     videoContainer.innerHTML = `
                         <iframe 
@@ -179,18 +303,22 @@
                             frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                             allowfullscreen 
-                            class="w-full h-full"
-                        ></iframe>
+                            class="w-full h-full rounded-xl"></iframe>
                     `;
+                    // Eğer kimlik doğrulama tamamlandıysa yorumları yükle
+                    if (authReady) {
+                        loadComments(videoId);
+                    }
                 } else {
                     videoContainer.innerHTML = '<p class="text-gray-400 text-center p-8">Video bulunamadı. Lütfen ana sayfadan bir video seçin.</p>';
+                    videoDescription.innerHTML = '';
+                    commentsList.innerHTML = '';
                 }
-
             } else {
                 // Ana sayfayı göster ve video oynatıcı içeriğini temizle
                 homePage.classList.remove('hidden-section');
                 videoPlayerPage.classList.add('hidden-section');
-                videoContainer.innerHTML = '<p class="text-gray-400 text-center p-8">Video yükleniyor...</p>';
+                stopVideo();
             }
         }
         
@@ -198,34 +326,183 @@
         window.addEventListener('hashchange', showSectionFromHash);
         window.addEventListener('load', showSectionFromHash);
 
-        // Videoyu durduran yeni fonksiyon
+        // Videoyu durduran ve yorumları temizleyen fonksiyon
         function stopVideo() {
             // Video kapsayıcısının içeriğini boşaltarak videoyu durdurur
             videoContainer.innerHTML = '<p class="text-gray-400 text-center p-8">Video yükleniyor...</p>';
+            videoTitle.textContent = 'Video';
+            videoDescription.textContent = '';
+            commentsList.innerHTML = '';
         }
 
-        // Örnek başlık ve açıklamaları tanımla
-        const videoData = {
-            'iii3dWT9se0': { title: 'Patrick Bateman', desc: 'Gizemli bir medeniyetin kayıp eserlerini arayan bir kaşif.' },
-            'oE3tLGpcWo8': { title: 'ATATURK', desc: 'Sonsuz dağlar ve bulutlar arasında bir yolculuk.' },
-            'v9T3LEkzZVA': { title: 'Patrick Bateman', desc: 'Gizemli bir orman videosu.' },
-            'qZGwDMQUkgo': { title: 'Spiderman', desc: 'Gelecekten bir siberpunk şehri.' },
-            'mWfHBHLax4M': { title: 'Knight Rider', desc: 'Karla kaplı bir dünyada bir kış hikayesi.' },
-            'Cl_p6yPvm3c': { title: 'Saul Goodman', desc: 'Blender 3D ile oluşturulmuş soyut bir sanat çalışması.' }
-        };
-        
-        // Video kartlarının tıklama olaylarını dinle
-        document.querySelectorAll('a[href^="#video-player"]').forEach(link => {
-            link.addEventListener('click', (event) => {
-                // Başlık bilgisini almak için videoId'yi kullan
-                const videoId = new URLSearchParams(link.href.split('?')[1]).get('id');
-                if (videoData[videoId]) {
-                    videoTitle.textContent = videoData[videoId].title;
-                } else {
-                    videoTitle.textContent = 'Video';
-                }
+        // Mobil menü linklerinin tıklanma olaylarını dinle
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
             });
         });
+
+        // Firestore'a yorum kaydetme fonksiyonu
+        async function saveComment(videoId, name, comment) {
+            if (!authReady) {
+                console.error("Kimlik doğrulama tamamlanmadı. Yorum kaydedilemiyor.");
+                return;
+            }
+            try {
+                // Verileri public/data altında 'comments' koleksiyonuna kaydet
+                const commentsCollection = collection(db, `artifacts/${appId}/public/data/comments`);
+                await addDoc(commentsCollection, {
+                    videoId: videoId,
+                    name: name,
+                    comment: comment,
+                    timestamp: serverTimestamp(), // Yorumun kaydedildiği zamanı ekle
+                    likes: 0, // Yeni eklenen beğenme sayısı
+                    dislikes: 0, // Yeni eklenen beğenmeme sayısı
+                    likedBy: [], // Beğenen kullanıcı kimlikleri
+                    dislikedBy: [] // Beğenmeyen kullanıcı kimlikleri
+                });
+                console.log("Yorum başarıyla kaydedildi.");
+                commentForm.reset();
+            } catch (e) {
+                console.error("Yorum kaydedilirken bir hata oluştu: ", e);
+            }
+        }
+
+        // Firestore'dan yorumları yükleme ve gösterme fonksiyonu
+        function loadComments(videoId) {
+            const commentsCollectionRef = collection(db, `artifacts/${appId}/public/data/comments`);
+            const q = query(commentsCollectionRef, where("videoId", "==", videoId));
+
+            onSnapshot(q, (snapshot) => {
+                commentsList.innerHTML = ''; // Listeyi temizle
+                const comments = [];
+                snapshot.forEach((doc) => {
+                    const data = doc.data();
+                    comments.push({ id: doc.id, ...data });
+                });
+
+                // Yorumları zamana göre (en yeni en üstte) sırala
+                comments.sort((a, b) => {
+                    if (a.timestamp && b.timestamp) {
+                        return b.timestamp.toDate() - a.timestamp.toDate();
+                    }
+                    return 0;
+                });
+                
+                // Yorumları sayfada göster
+                comments.forEach(comment => {
+                    const commentElement = document.createElement('div');
+                    commentElement.classList.add('bg-gray-800', 'p-4', 'rounded-lg', 'shadow-md');
+                    
+                    const nameElement = document.createElement('h4');
+                    nameElement.classList.add('text-lg', 'font-semibold', 'text-purple-400');
+                    nameElement.textContent = comment.name;
+                    
+                    const textElement = document.createElement('p');
+                    textElement.classList.add('text-gray-300', 'mt-2');
+                    textElement.textContent = comment.comment;
+
+                    const voteContainer = document.createElement('div');
+                    voteContainer.classList.add('flex', 'items-center', 'space-x-4', 'mt-4', 'text-gray-400');
+                    voteContainer.setAttribute('data-comment-id', comment.id);
+
+                    // Beğenme butonu ve sayacı
+                    const likeButton = document.createElement('button');
+                    likeButton.classList.add('flex', 'items-center', 'space-x-1', 'transition-colors', 'duration-200');
+                    // Kullanıcının beğenip beğenmediğine göre renk ayarla
+                    if (comment.likedBy && comment.likedBy.includes(userId)) {
+                        likeButton.classList.add('text-green-400');
+                    } else {
+                         likeButton.classList.add('hover:text-green-400');
+                    }
+                    likeButton.innerHTML = `
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7-5a1 1 0 00-1 1v2a1 1 0 002 0V6a1 1 0 00-1-1zm3 1a1 1 0 00-1 1v2a1 1 0 002 0V7a1 1 0 00-1-1zm-6 3a1 1 0 00-1 1v2a1 1 0 002 0V10a1 1 0 00-1-1zm3 1a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1zm3 1a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                        <span class="like-count">${comment.likes || 0}</span>
+                    `;
+                    likeButton.setAttribute('data-vote-type', 'like');
+
+                    // Beğenmeme butonu ve sayacı
+                    const dislikeButton = document.createElement('button');
+                    dislikeButton.classList.add('flex', 'items-center', 'space-x-1', 'transition-colors', 'duration-200');
+                    // Kullanıcının beğenmeyip beğenmediğine göre renk ayarla
+                    if (comment.dislikedBy && comment.dislikedBy.includes(userId)) {
+                        dislikeButton.classList.add('text-red-400');
+                    } else {
+                         dislikeButton.classList.add('hover:text-red-400');
+                    }
+                    dislikeButton.innerHTML = `
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 10a8 8 0 1116 0A8 8 0 012 10zm7 5a1 1 0 001-1v-2a1 1 0 00-2 0v2a1 1 0 001 1zm3-1a1 1 0 001 1v2a1 1 0 00-2 0v-2a1 1 0 001-1zm-6-3a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1zm3-1a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1zm3-1a1 1 0 00-1 1v2a1 1 0 002 0v-2a1 1 0 00-1-1z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                        </svg>
+                        <span class="dislike-count">${comment.dislikes || 0}</span>
+                    `;
+                    dislikeButton.setAttribute('data-vote-type', 'dislike');
+
+                    voteContainer.appendChild(likeButton);
+                    voteContainer.appendChild(dislikeButton);
+                    
+                    commentElement.appendChild(nameElement);
+                    commentElement.appendChild(textElement);
+                    commentElement.appendChild(voteContainer);
+                    commentsList.appendChild(commentElement);
+                });
+            });
+        }
+
+        // Yorum formunun gönderilme olayını dinle
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('comment-name').value;
+            const comment = document.getElementById('comment-text').value;
+            const urlParams = new URLSearchParams(window.location.hash.split('?')[1]);
+            const videoId = urlParams.get('id');
+
+            if (name && comment && videoId) {
+                saveComment(videoId, name, comment);
+            } else {
+                console.error("Lütfen adınızı ve yorumunuzu girin.");
+            }
+        });
+
+        // Yorum listesine tıklama olayını dinleyerek oy butonlarını yönet
+        commentsList.addEventListener('click', (e) => {
+            const button = e.target.closest('button[data-vote-type]');
+            if (!button || !authReady) return;
+
+            const voteType = button.getAttribute('data-vote-type');
+            const commentElement = button.closest('[data-comment-id]');
+            const commentId = commentElement.getAttribute('data-comment-id');
+
+            handleVote(commentId, voteType);
+        });
+
+        // Oy verme işlemini yöneten fonksiyon
+        async function handleVote(commentId, voteType) {
+            const commentRef = doc(db, `artifacts/${appId}/public/data/comments`, commentId);
+
+            try {
+                // Beğeni/beğenmeme durumunu kontrol et ve güncelle
+                if (voteType === 'like') {
+                    await updateDoc(commentRef, {
+                        likes: increment(1),
+                        dislikes: increment(0),
+                        likedBy: arrayUnion(userId),
+                        dislikedBy: arrayRemove(userId)
+                    });
+                } else if (voteType === 'dislike') {
+                     await updateDoc(commentRef, {
+                        likes: increment(0),
+                        dislikes: increment(1),
+                        dislikedBy: arrayUnion(userId),
+                        likedBy: arrayRemove(userId)
+                    });
+                }
+            } catch (e) {
+                console.error("Oy verilirken hata oluştu: ", e);
+            }
+        }
     </script>
 </body>
 </html>

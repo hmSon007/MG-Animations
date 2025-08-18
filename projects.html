@@ -49,20 +49,27 @@
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen p-4">
 
+    <!-- Geri Dön Tuşu -->
+    <div class="absolute top-4 left-4">
+        <button onclick="history.back()" class="px-8 py-4 text-lg font-semibold text-white bg-gradient-purple rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50">
+            Geri Dön
+        </button>
+    </div>
+
     <div class="container mx-auto px-4 py-8">
         <!-- Projeler Bölümü -->
         <h1 class="text-4xl md:text-5xl font-extrabold text-center text-white mb-12">Projelerimiz</h1>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Proje Kartı 1 -->
-            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent overflow-hidden" id="mg-wordkart-card">
+            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden" id="mg-wordkart-card">
                 <!-- Metin gradyanı için özel div -->
                 <div class="img-placeholder">
                     <h3 class="text-2xl md:text-3xl font-bold text-gradient">MG-Wordkart</h3>
                 </div>
                 <div class="p-6">
                     <h3 class="text-2xl font-semibold mb-2 text-white">MG-Wordkart</h3>
-                    <p class="text-gray-400">Bu uygulama, İngilizce kelime bilginizi flaş kartlar aracılığıyla geliştirmek için tasarlanmıştır.</p>
+                    <p class="text-gray-400">Bir kelime tahmin oyunudur. Bu projede HTML, CSS ve JavaScript kullanılmıştır.</p>
                 </div>
             </a>
             
@@ -83,13 +90,6 @@
                     <p class="text-gray-400">Bu alan, üçüncü projenizin açıklamasını içerir. Diğer projeleriniz için bu yapıyı kullanabilirsiniz.</p>
                 </div>
             </a>
-        </div>
-
-        <!-- Geri Dön Tuşu -->
-        <div class="text-center mt-12">
-            <button onclick="history.back()" class="px-8 py-4 text-lg font-semibold text-white bg-gradient-purple rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50">
-                Geri Dön
-            </button>
         </div>
     </div>
 
