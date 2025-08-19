@@ -36,7 +36,7 @@
             overflow: hidden;
         }
         .mobile-menu.active {
-            max-height: 200px; /* Menü içeriğine göre ayarlanabilir */
+            max-height: 500px; /* Menü içeriğine göre ayarlanabilir, önceki 200px'den daha fazla */
         }
     </style>
 </head>
@@ -206,7 +206,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, addDoc, onSnapshot, collection, query, where, serverTimestamp, updateDoc, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, addDoc, onSnapshot, collection, query, where, serverTimestamp, updateDoc, increment, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // Global Firebase değişkenleri
         const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
@@ -265,9 +265,12 @@
         const commentsList = document.getElementById('comments-list');
 
         // Mobil menü butonunun tıklanma olayını dinle
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-        });
+        if (mobileMenuButton && mobileMenu) {
+             mobileMenuButton.addEventListener('click', () => {
+                console.log("Mobil menü butonuna tıklandı.");
+                mobileMenu.classList.toggle('active');
+            });
+        }
 
         // Örnek başlık ve açıklamaları tanımla
         const videoData = {
@@ -336,11 +339,13 @@
         }
 
         // Mobil menü linklerinin tıklanma olaylarını dinle
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
+        if (mobileMenu) {
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
             });
-        });
+        }
 
         // Firestore'a yorum kaydetme fonksiyonu
         async function saveComment(videoId, name, comment) {
@@ -480,24 +485,67 @@
 
         // Oy verme işlemini yöneten fonksiyon
         async function handleVote(commentId, voteType) {
+            if (!authReady) {
+                console.error("Kimlik doğrulama tamamlanmadı. Oy verilemiyor.");
+                return;
+            }
+            
             const commentRef = doc(db, `artifacts/${appId}/public/data/comments`, commentId);
+            const docSnap = await getDoc(commentRef);
+            if (!docSnap.exists()) {
+                console.error("Yorum bulunamadı!");
+                return;
+            }
+
+            const commentData = docSnap.data();
+            const hasLiked = commentData.likedBy && commentData.likedBy.includes(userId);
+            const hasDisliked = commentData.dislikedBy && commentData.dislikedBy.includes(userId);
 
             try {
-                // Beğeni/beğenmeme durumunu kontrol et ve güncelle
                 if (voteType === 'like') {
-                    await updateDoc(commentRef, {
-                        likes: increment(1),
-                        dislikes: increment(0),
-                        likedBy: arrayUnion(userId),
-                        dislikedBy: arrayRemove(userId)
-                    });
+                    if (hasLiked) {
+                        // Eğer zaten beğenmişse, beğeniyi geri al
+                        await updateDoc(commentRef, {
+                            likes: increment(-1),
+                            likedBy: arrayRemove(userId)
+                        });
+                    } else if (hasDisliked) {
+                        // Eğer beğenmemişse, beğeniyi ekle ve beğenmemeyi kaldır
+                        await updateDoc(commentRef, {
+                            likes: increment(1),
+                            dislikes: increment(-1),
+                            likedBy: arrayUnion(userId),
+                            dislikedBy: arrayRemove(userId)
+                        });
+                    } else {
+                        // İlk kez beğeniyorsa
+                        await updateDoc(commentRef, {
+                            likes: increment(1),
+                            likedBy: arrayUnion(userId)
+                        });
+                    }
                 } else if (voteType === 'dislike') {
-                     await updateDoc(commentRef, {
-                        likes: increment(0),
-                        dislikes: increment(1),
-                        dislikedBy: arrayUnion(userId),
-                        likedBy: arrayRemove(userId)
-                    });
+                    if (hasDisliked) {
+                        // Eğer zaten beğenmemişse, beğenmemeyi geri al
+                        await updateDoc(commentRef, {
+                            dislikes: increment(-1),
+                            dislikedBy: arrayRemove(userId)
+                        });
+                    } else if (hasLiked) {
+                        // Eğer beğenmişse, beğenmemeyi ekle ve beğeniyi kaldır
+                        await updateDoc(commentRef, {
+                            likes: increment(-1),
+                            dislikes: increment(1),
+                            dislikedBy: arrayUnion(userId),
+                            likedBy: arrayRemove(userId)
+                        });
+                    } else {
+                        // İlk kez beğenmiyorsa
+                        await updateDoc(commentRef, {
+                            dislikes: increment(1),
+                            dislikedBy: arrayUnion(userId)
+                        });
+                    }
                 }
             } catch (e) {
                 console.error("Oy verilirken hata oluştu: ", e);

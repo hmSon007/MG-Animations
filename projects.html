@@ -33,7 +33,7 @@
         /* Görsel alanının boyutları ve arka planı */
         .img-placeholder {
             width: 100%;
-            height: 180px; /* Görselin yüksekliğini temsil eden sabit bir değer */
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,9 +41,53 @@
             border-top-left-radius: 1rem;
             border-top-right-radius: 1rem;
         }
-        /* Sadece ilk kart için hover efekti */
+        /* Neon efekti için yeni sınıflar */
+        .neon-glow {
+            box-shadow: 0 0 5px #059669, 0 0 10px #059669, 0 0 15px #059669;
+        }
+        .neon-text {
+            text-shadow: 0 0 5px #10b981, 0 0 10px #10b981;
+        }
+        /* Scrollbar stilleri */
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+        
+        /* Proje kartlarının varsayılan ve hover durumları */
+        .project-card .img-placeholder h3 {
+            opacity: 0.6; /* Varsayılan sönük durum */
+            transition: opacity 0.3s ease-in-out, text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
+            color: #e0e0e0; /* Diğer kartlar için varsayılan sönük renk */
+        }
+        .project-card:hover .img-placeholder h3 {
+            opacity: 1; /* Üzerine gelince tam opaklık */
+        }
+        
+        /* İlk kart için hover efektleri */
         #mg-wordkart-card:hover {
-            border-color: #22D3EE; /* Gradyandaki mavi tonu */
+            border-color: #22D3EE;
+        }
+        #mg-wordkart-card:hover .img-placeholder h3 {
+            text-shadow: 0 0 5px rgba(99, 102, 241, 0.7), 0 0 15px rgba(34, 211, 238, 0.5);
+        }
+
+        /* İkinci kart için varsayılan ve hover efektleri */
+        #mg-games-card .img-placeholder h3 {
+            color: #4ade80; /* Sönük yeşil */
+            opacity: 0.4;
+        }
+        #mg-games-card:hover {
+            border-color: #10B981;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        #mg-games-card:hover .img-placeholder h3 {
+            color: #10b981; /* Üzerine gelince neon yeşili renk */
+            text-shadow: 0 0 5px #10b981, 0 0 10px #10b981;
+            opacity: 1;
         }
     </style>
 </head>
@@ -62,8 +106,7 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Proje Kartı 1 -->
-            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden" id="mg-wordkart-card">
-                <!-- Metin gradyanı için özel div -->
+            <a href="https://hmson007.github.io/MG-Wordkart/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent overflow-hidden" id="mg-wordkart-card">
                 <div class="img-placeholder">
                     <h3 class="text-2xl md:text-3xl font-bold text-gradient">MG-Wordkart</h3>
                 </div>
@@ -73,12 +116,14 @@
                 </div>
             </a>
             
-            <!-- Proje Kartı 2 (Örnek) -->
-            <a href="#" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent hover:border-purple-500 overflow-hidden">
-                <img src="https://placehold.co/800x450/2e2e40/8b5cf6?text=Proje+2+Ekran+G%C3%B6r%C3%BCnt%C3%BCs%C3%BC" alt="Örnek Proje 2 Önizlemesi" class="w-full h-auto object-cover rounded-t-2xl">
+            <!-- Proje Kartı 2 -->
+            <a href="https://hmson007.github.io/MG-Games/" target="_blank" class="block project-card bg-[#1e1e2d] rounded-2xl shadow-lg hover:border-2 border-transparent overflow-hidden" id="mg-games-card">
+                <div class="img-placeholder">
+                    <h3 class="text-2xl md:text-3xl font-bold">MG-Games</h3>
+                </div>
                 <div class="p-6">
-                    <h3 class="text-2xl font-semibold mb-2 text-white">İkinci Proje Adı</h3>
-                    <p class="text-gray-400">Bu alan, ikinci projenizin açıklamasını içerir. Kullandığınız teknolojileri ve projenin amacını burada belirtebilirsiniz.</p>
+                    <h3 class="text-2xl font-semibold mb-2 text-white">MG-Games</h3>
+                    <p class="text-gray-400">Çeşitli oyunları bir araya getiren bir platform. Bu projede HTML, CSS ve JavaScript kullanılmıştır.</p>
                 </div>
             </a>
 
